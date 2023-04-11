@@ -11,6 +11,7 @@ public class UserAccount extends JFrame {
     private JScrollPane statsPane;
     private JTextArea stats;
     private JPanel statsPanel;
+    private JButton viewFriendsButton;
     private User user;
 
     public UserAccount(User user) {
@@ -25,7 +26,6 @@ public class UserAccount extends JFrame {
 
         setContentPane(panel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(1100, 600);
 
         selectAGameButton.addActionListener(new ActionListener() {
@@ -69,6 +69,12 @@ public class UserAccount extends JFrame {
             }
         });
 
+        viewFriendsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FriendsList(user);
+            }
+        });
     }
 
     public void updateStats() {

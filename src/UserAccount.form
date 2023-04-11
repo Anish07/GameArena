@@ -57,19 +57,24 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="149b5" class="javax.swing.JTextArea" binding="stats">
+              <scrollpane id="46178" binding="statsPane">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties>
-                  <editable value="false"/>
-                  <font name="Consolas" size="18"/>
-                  <rows value="3"/>
-                  <text value=""/>
-                </properties>
-              </component>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="149b5" class="javax.swing.JTextArea" binding="stats">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                      <font name="Consolas" size="18"/>
+                      <rows value="3"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
           <hspacer id="6236e">

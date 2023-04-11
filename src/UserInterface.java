@@ -32,8 +32,6 @@ public class UserInterface extends JFrame implements ActionListener {
         setContentPane(mainPanel);
 
         searchButton.addActionListener(this);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
     }

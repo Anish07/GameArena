@@ -9,7 +9,6 @@ public class GameForm extends JFrame {
     private JLabel gameLabel;
     private JButton playButton;
     private JButton backButton;
-    private String[] games = {"Chess", "Checkers", "Death", "BlackJack", "TournamentLobby", "TicTacToe"};
 
     public GameForm() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
@@ -17,7 +16,7 @@ public class GameForm extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(size.width/2, size.height/4);
 
-        for (String game: games) {
+        for (String game: GameArenaSystem.load().getGames()) {
             gameList.addItem(game);
         }
 

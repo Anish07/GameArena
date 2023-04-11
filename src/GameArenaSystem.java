@@ -7,7 +7,6 @@ public class GameArenaSystem implements java.io.Serializable {
     private ArrayList<User> users;
     private String[] games = {"Chess", "Checkers", "Death", "BlackJack", "TournamentLobby", "TicTacToe"};
 
-
     public GameArenaSystem() {
         users = new ArrayList<User>();
     }

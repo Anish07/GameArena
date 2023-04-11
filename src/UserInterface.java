@@ -9,6 +9,7 @@ public class UserInterface extends JFrame implements ActionListener {
     private String username;
     private JTextField searchField;
     private JTextArea resultsArea;
+    private JButton addFriendButton;
     private ArrayList<User> users;
     private User curuser;
 
@@ -23,6 +24,8 @@ public class UserInterface extends JFrame implements ActionListener {
         resultsArea = new JTextArea(10, 30);
         resultsArea.setEditable(false);
 
+        addFriendButton = new JButton("Add Friend");
+
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel searchPanel = new JPanel(new FlowLayout());
         searchPanel.add(searchLabel);
@@ -30,6 +33,7 @@ public class UserInterface extends JFrame implements ActionListener {
         searchPanel.add(searchButton);
         mainPanel.add(searchPanel, BorderLayout.NORTH);
         mainPanel.add(new JScrollPane(resultsArea), BorderLayout.CENTER);
+        mainPanel.add(addFriendButton, BorderLayout.SOUTH);
         setContentPane(mainPanel);
 
         searchButton.addActionListener(this);
@@ -61,12 +65,33 @@ public class UserInterface extends JFrame implements ActionListener {
                     if (SwingUtilities.isRightMouseButton(e)) {
                         popupMenu.show(e.getComponent(), e.getX(), e.getY());
                     }
+                    if (SwingUtilities.isLeftMouseButton(e)) {
+                        resultsArea.setSelectionColor(Color.YELLOW);
+                        resultsArea.setSelectionStart(resultsArea.getSelectionStart());
+                        resultsArea.setSelectionEnd(resultsArea.getSelectionEnd());
+                    }
                 }
             });
 
             inviteMenuItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     TournamentGUI lobby = new TournamentGUI(curuser.getUsername(), searchText);
+                }
+            });
+
+            addFriendButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(resultsArea.getText() != null){
+                        if(!(curuser.getFriendsList().contains(system.getUser(searchText)))){
+                            curuser.addFriend(system.getUser(searchText));
+                            JOptionPane.showMessageDialog(null, searchText + " has been added to your friends list!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null,  searchText + " is already in your friends list.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Please click the search button first.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             });
         }

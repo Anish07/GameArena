@@ -3,7 +3,7 @@
   <grid id="27dc6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="997" height="693"/>
+      <xy x="20" y="20" width="997" height="783"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -33,7 +33,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <grid id="41a0c" layout-manager="GridLayoutManager" row-count="19" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="41a0c" layout-manager="GridLayoutManager" row-count="21" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="true">
@@ -83,12 +83,12 @@
                       </hspacer>
                       <hspacer id="7aff8">
                         <constraints>
-                          <grid row="10" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="12" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                       <vspacer id="7ed44">
                         <constraints>
-                          <grid row="11" column="2" row-span="1" col-span="6" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                          <grid row="13" column="2" row-span="1" col-span="6" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
                             <preferred-size width="11" height="25"/>
                           </grid>
                         </constraints>
@@ -115,20 +115,6 @@
                           <grid row="2" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
-                      <vspacer id="acfd1">
-                        <constraints>
-                          <grid row="7" column="3" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                            <preferred-size width="11" height="20"/>
-                          </grid>
-                        </constraints>
-                      </vspacer>
-                      <vspacer id="e3b1d">
-                        <constraints>
-                          <grid row="9" column="3" row-span="1" col-span="4" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-                            <preferred-size width="11" height="20"/>
-                          </grid>
-                        </constraints>
-                      </vspacer>
                       <component id="77c2c" class="javax.swing.JLabel" binding="icon">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="1" hsize-policy="1" anchor="8" fill="0" indent="3" use-parent-layout="false">
@@ -165,7 +151,7 @@
                       </component>
                       <component id="f36a5" class="javax.swing.JButton" binding="logOffButton">
                         <constraints>
-                          <grid row="10" column="1" row-span="1" col-span="8" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="12" column="1" row-span="1" col-span="8" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <horizontalTextPosition value="0"/>
@@ -175,7 +161,7 @@
                       <grid id="ed0fb" binding="statsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="12" column="1" row-span="6" col-span="8" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                          <grid row="14" column="1" row-span="6" col-span="8" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                             <minimum-size width="-1" height="200"/>
                             <preferred-size width="-1" height="200"/>
                           </grid>
@@ -208,39 +194,68 @@
                       </grid>
                       <vspacer id="697e6">
                         <constraints>
-                          <grid row="18" column="1" row-span="1" col-span="8" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                          <grid row="20" column="1" row-span="1" col-span="8" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
                       <hspacer id="1769b">
                         <constraints>
-                          <grid row="14" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="16" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                       <hspacer id="39978">
                         <constraints>
-                          <grid row="13" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="15" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                       <hspacer id="db753">
                         <constraints>
-                          <grid row="12" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="14" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                       <hspacer id="7f50a">
                         <constraints>
-                          <grid row="15" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="17" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                       <hspacer id="aa0bc">
                         <constraints>
-                          <grid row="16" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="18" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
                       <hspacer id="b9464">
                         <constraints>
-                          <grid row="17" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="19" column="9" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </hspacer>
+                      <vspacer id="e3b1d">
+                        <constraints>
+                          <grid row="9" column="2" row-span="1" col-span="6" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <preferred-size width="11" height="20"/>
+                          </grid>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="acfd1">
+                        <constraints>
+                          <grid row="7" column="2" row-span="1" col-span="6" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <preferred-size width="11" height="20"/>
+                          </grid>
+                        </constraints>
+                      </vspacer>
+                      <component id="17556" class="javax.swing.JButton" binding="viewFriendsButton">
+                        <constraints>
+                          <grid row="10" column="1" row-span="1" col-span="8" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="View Friends List"/>
+                        </properties>
+                      </component>
+                      <vspacer id="38af1">
+                        <constraints>
+                          <grid row="11" column="2" row-span="1" col-span="6" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                            <preferred-size width="11" height="20"/>
+                          </grid>
+                        </constraints>
+                      </vspacer>
                     </children>
                   </grid>
                   <grid id="b4c95" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

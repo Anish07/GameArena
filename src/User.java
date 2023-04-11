@@ -119,13 +119,7 @@ public class User implements java.io.Serializable {
     {
         this.friendsList.add(user);
     }
-    public void getFriendsList()
-    {
-        for (User u : friendsList)
-        {
-            u.print();
-        }
-    }
+    public ArrayList<User> getFriendsList() { return this.friendsList; }
     public String print()
     {
         return ("\n Name: " + name + " Username: " + username + " Status: " + status);

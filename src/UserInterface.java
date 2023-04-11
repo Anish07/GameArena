@@ -12,9 +12,9 @@ public class UserInterface extends JFrame implements ActionListener {
 
     private User curuser;
 
-    public UserInterface(String username) {
+    public UserInterface(User user, ArrayList<User> users) {
         super("Find a friend");
-        this.username = username;
+        this.username = user.getUsername();
 
         JLabel searchLabel = new JLabel("Search:");
         searchField = new JTextField(20);

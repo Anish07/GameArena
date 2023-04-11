@@ -13,7 +13,6 @@ public class GameForm extends JFrame {
     public GameForm() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         setContentPane(panel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(size.width/2, size.height/4);
 
         for (String game: GameArenaSystem.load().getGames()) {
@@ -23,17 +22,17 @@ public class GameForm extends JFrame {
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (gameList.getSelectedItem() == "TournamentLobby") {
+                dispose();
+                if (gameList.getSelectedItem().equals("TournamentLobby")) {
                     String player1 = "Kyle";
                     String player2 = "Tom";
                     TournamentGUI gui = new TournamentGUI(player1, player2);
-                } else if (gameList.getSelectedItem() == "BlackJack") {
+                } else if (gameList.getSelectedItem().equals("BlackJack")) {
+                    System.out.println("BlackJack selected");
                     Tester.start(); //we open the menu by a static method.
-                } else if (gameList.getSelectedItem() == "TicTacToe") {
+                } else if (gameList.getSelectedItem().equals("TicTacToe")) {
                     TicTacToe t = new TicTacToe();
                     t.setVisible(true);
-                } else {
-                    dispose();
                 }
             }
         });

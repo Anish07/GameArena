@@ -96,15 +96,7 @@ public class UserAccount extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 dispose();
-
-                // Sample data
-                ArrayList<User> users = new ArrayList<User>();
-                User curuser = new User("", "", username);
-                users.add(new User("Peter09", "peter@gmail.ca", "Peter"));
-                users.add(new User("John_Sol", "jsol@gmail.ca", "John"));
-
-                // Create GUI
-                UserInterface gui = new UserInterface(curuser, users);
+                UserInterface gui = new UserInterface(username);
             }
         });
 

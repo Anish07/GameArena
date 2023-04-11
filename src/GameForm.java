@@ -13,7 +13,6 @@ public class GameForm extends JFrame {
     public GameForm() {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         setContentPane(panel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(size.width/2, size.height/4);
 
         for (String game: GameArenaSystem.load().getGames()) {

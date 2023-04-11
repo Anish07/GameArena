@@ -5,22 +5,23 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class UserAccount extends JFrame {
-    private JPanel panel;
-    private JLabel greeting;
-    private JButton selectAGameButton;
-    private JButton addAFriendButton;
-    private JButton viewAccountStatisticsButton;
-    private JTextArea stats;
-    private JButton logOffButton;
+    private JPanel panel, menuPanel;
+    private JLabel greeting, title, icon;
+    private JButton selectAGameButton, addAFriendButton, viewAccountStatisticsButton, logOffButton;
     private JScrollPane statsPane;
+    private JTextArea stats;
+    private JPanel statsPanel;
     private User user;
 
     public UserAccount(User user) {
+        ImageIcon iconImg = new ImageIcon("images/controller_small.png");
+        icon.setIcon(iconImg);
+
         this.user = user;
         greeting.setText("Welcome " + user.getUsername() + "!");
 
         updateStats();
-        statsPane.setVisible(false);
+        statsPanel.setVisible(false);
 
         setContentPane(panel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -47,12 +48,14 @@ public class UserAccount extends JFrame {
         viewAccountStatisticsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (statsPane.isVisible()) {
-                    statsPane.setVisible(false);
+                if (statsPanel.isVisible()) {
+                    statsPanel.setVisible(false);
                     viewAccountStatisticsButton.setText("View Account Statistics");
+                    setSize(1100, 600);
                 } else {
-                    statsPane.setVisible(true);
+                    statsPanel.setVisible(true);
                     viewAccountStatisticsButton.setText("Hide Account Statistics");
+                    setSize(1100, 800);
                 }
                 greeting.grabFocus();
             }
@@ -71,7 +74,7 @@ public class UserAccount extends JFrame {
         // Display current user game stats
         // Should be called to update the UI after a game finishes
         HashMap<String, HashMap<String, Integer>> gameStats = user.getStats();
-        stats.setText("Player Data\n\n");
+        stats.setText("");
 
         for (String game : gameStats.keySet()) {
             stats.append(game + "\n");

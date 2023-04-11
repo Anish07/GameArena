@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 
 public class ForgotPassword extends JFrame {
     private JPanel panel;
@@ -32,21 +31,25 @@ public class ForgotPassword extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameTextField.getText();
                 String email = emailTextField.getText();
-                char[] password = newPasswordTextField.getPassword();
+                String password = String.valueOf(newPasswordTextField.getPassword());
+                GameArenaSystem system = GameArenaSystem.load();
 
                 if (username.length() == 0 || email.length() == 0 )
                     JOptionPane.showMessageDialog(null, "Please enter the username and email associated with your account.", "Credentials Missing", JOptionPane.ERROR_MESSAGE);
 
-                else if (password.length == 0 )
-                    JOptionPane.showMessageDialog(null, "Please enter a new password", "Credentials Missing", JOptionPane.ERROR_MESSAGE);
+                else if (password.length() == 0 )
+                    JOptionPane.showMessageDialog(null, "Please enter a new password", "Password Missing", JOptionPane.ERROR_MESSAGE);
 
-                else if (!accountExists(username, email))
+                else if (!system.accountExists(username, email))
                     JOptionPane.showMessageDialog(null, "No account exists with the provided username and email. Please try again.", "Invalid Credentials", JOptionPane.ERROR_MESSAGE);
 
                 else {
-                    updatePassword(username, newPasswordTextField.getPassword());
+                    system.getUser(username).setPassword(password);
+                    system.save();
+
                     JOptionPane.showMessageDialog(null, "Password successfully updated.", "Password Updated", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
+
                     LoginMenu menu = new LoginMenu();
                     menu.setVisible(true);
                 }
@@ -63,20 +66,4 @@ public class ForgotPassword extends JFrame {
         });
     }
 
-    public boolean accountExists(String username, String email) {
-        Connection conn = null;
-        /*
-
-            Insert code to check if an account with username/email combination exists
-            in the database.........
-
-        */
-
-        // Return true for now
-        return true;
-    }
-
-    public void updatePassword(String username, char[] password) {
-        // Needs database
-    }
 }

@@ -1,33 +1,31 @@
 import java.util.ArrayList;
-public class User {
+import java.util.HashMap;
+
+public class User implements java.io.Serializable {
     private String name;
     private String email;
-    private int phone;
-    private int age;
     private int secondsPlayed;
-    private String id;
+    private String username;
     private String status;
+    private String password;
     private boolean online;
-    ArrayList<User> friendsList;
+    private ArrayList<User> friendsList;
+    private HashMap<String, HashMap<String, Integer>> stats;
 
-    public User(String id, String email, String name) //To be executed for user registration, involves essential data about a user
+    public User(String username, String email, String name, String password) //To be executed for user registration, involves essential data about a user
     {
-        this.id = id; //Can be a unique username or id number
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.email = email;
         this.secondsPlayed = 0;
         this.status = "idle";
-        ArrayList<User> friendsList = new ArrayList<User>(); //Initialize a new empty list for friends
+        this.stats  = new HashMap<>();
+        this.friendsList = new ArrayList<User>();
     }
 
-    public String getID()
-    {
-        return id;
-    }
-
-    public void setID(String id)
-    {
-        this.id = id;
+    public User(String username, String email, String name) {
+        this(username, email, name, null);
     }
 
     public void setName(String name)
@@ -40,6 +38,14 @@ public class User {
         return name;
     }
 
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
     public void setEmail(String email)
     {
         this.email = email;
@@ -50,25 +56,9 @@ public class User {
         return email;
     }
 
-    public void setPhone(int phone)
-    {
-        this.phone = phone;
-    }
+    public HashMap<String, HashMap<String, Integer>> getStats() { return stats; }
 
-    public int getPhone()
-    {
-        return phone;
-    }
-
-    public void setAge(int age)
-    {
-        this.age = age;
-    }
-
-    public int getAge()
-    {
-        return age;
-    }
+    public void setStats(HashMap<String, HashMap<String, Integer>> stats) { this.stats = stats; }
 
     public void setOnline()
     {
@@ -88,6 +78,13 @@ public class User {
     public String getStatus()
     {
         return status;
+    }
+    
+    public void updateStat(String game, String stat) {
+        // Increments `stat` {"Wins", "Losses", "Ties"} for `game`
+        HashMap<String, Integer> gameStats = stats.get(game);
+        if (gameStats != null && gameStats.get(stat) != null)
+            gameStats.put(stat, gameStats.get(stat) + 1);
     }
 
     public void playGame() //skeleton placeholder to use for other things
@@ -131,7 +128,7 @@ public class User {
     }
     public String print()
     {
-        return ("\n Name: " + name + " Username: " + id + " Status: " + status);
+        return ("\n Name: " + name + " Username: " + username + " Status: " + status);
     }
 
 

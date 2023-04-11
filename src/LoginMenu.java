@@ -1,11 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Scanner;
+
 
 public class LoginMenu extends JFrame {
     private JPanel panel, menuPanel;
@@ -14,10 +10,6 @@ public class LoginMenu extends JFrame {
     private JPasswordField passwordField1;
     private JButton loginButton, forgotButton, createAccountButton;
     private JSeparator sep;
-
-    private final String url = "jdbc:postgresql://localhost:5432/postgres";
-    private final String user = "postgres";
-    private final String password = "docker";
 
 
     public LoginMenu() {
@@ -35,62 +27,31 @@ public class LoginMenu extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameTextField.getText();
-                char[] password = passwordField1.getPassword();
+                GameArenaSystem system;
+                User user;
 
-                if (username.length() == 0 || password.length == 0) {
+                String username = usernameTextField.getText();
+                String password = String.valueOf(passwordField1.getPassword());
+
+                if (username.length() == 0 || password.length() == 0) {
                     JOptionPane.showMessageDialog(null, "Please enter your username and password.", "Credentials Missing", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
-                // Not sure how this is being done, leaving as pseudocode for now
-                // Check txt file or database (?) for matching username and password
+                system = GameArenaSystem.load();
+                user = system.login(username, password);
 
-               try {
-                    File file = new File("database.txt");
-                    Scanner scanner = new Scanner(file);
-                    Boolean usernamefound = false;
-                    while (scanner.hasNextLine()) {
-                        String line = scanner.nextLine();
-                        String targetusername = "";
-                        if (line.length() >= 10)
-                        {
-                            if (line.substring(0,9).equals("Username:"))
-                            {
-                                targetusername = line.substring(10);
-                            }
-                        }
-                        if (username.equals(targetusername))
-                        {
-                            usernamefound = true;
-                            String line2 = scanner.nextLine(); //password
-                            if (line2.substring(10).equals(new String(password)))
-                            {
-                                dispose();  // Only dispose if correct
-                                UserAccount user = new UserAccount(username);
-                                user.setVisible(true);
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(null,"Password is invalid, please try again.","Login Error", JOptionPane.ERROR_MESSAGE);
-                            }
-                        }
-                    }
-                    if (usernamefound == false)
-                    {
-                        JOptionPane.showMessageDialog(null,"Invalid username provided, please try again.","Login Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    scanner.close();
-                } catch (FileNotFoundException f) {
-                    System.out.println("File not found.");
+                if (user == null) {
+                    if (system.usernameExists(username))
+                      JOptionPane.showMessageDialog(null,"Password is invalid, please try again.","Login Error", JOptionPane.ERROR_MESSAGE);
+                    else
+                      JOptionPane.showMessageDialog(null,"Invalid username provided, please try again.","Login Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-                // else if (username/password combo is wrong) {
-                //      JOptionPane.showMessageDialog(null,"Password is invalid, please try again.","Login Error", JOptionPane.ERROR_MESSAGE);
-                // }
-
-                // else if (no account with given username exists) {
-                //      JOptionPane.showMessageDialog(null,"Invalid username provided, please try again.","Login Error", JOptionPane.ERROR_MESSAGE);
-                //}
+                else {
+                    dispose();
+                    UserAccount userAccount = new UserAccount(user);
+                    userAccount.setVisible(true);
+                }
             }
         });
 
@@ -99,7 +60,6 @@ public class LoginMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 ForgotPassword f = new ForgotPassword();
-                f.setVisible(true);
             }
         });
 
@@ -109,28 +69,11 @@ public class LoginMenu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 CreateAccount c = new CreateAccount();
-                c.setVisible(true);
-
             }
         });
     }
-    public Connection connect() {
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the PostgreSQL server successfully.");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        return conn;
-    }
-
-        public static void main(String[] args) {
-            LoginMenu menu = new LoginMenu();
-            menu.connect();
-            menu.setVisible(true);
-
-
+    public static void main(String[] args) {
+        LoginMenu menu = new LoginMenu();
     }
 }

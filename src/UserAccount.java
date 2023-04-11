@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.HashMap;
 
 public class UserAccount extends JFrame {
     private JPanel panel;
@@ -15,49 +12,20 @@ public class UserAccount extends JFrame {
     private JButton viewAccountStatisticsButton;
     private JTextArea stats;
     private JButton logOffButton;
-    private String username;
+    private JScrollPane statsPane;
+    private User user;
 
-    public UserAccount(String username) {
-        this.username = username;
-        greeting.setText("Welcome " + username + "!");
+    public UserAccount(User user) {
+        this.user = user;
+        greeting.setText("Welcome " + user.getUsername() + "!");
 
-        // Code below is for reading from txt file and printing it.
-        // this is used to count number of lines each user has in terms of game data
-        int count = 0;
-
-        String fileName = "database.txt"; // Update with the correct file name
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            boolean found = false;
-            while ((line = br.readLine()) != null) {
-
-                //right now every user has 24 lines, but this number can be changed if more games are added or data information is expanded
-                if (count == 24){
-                    break;
-                } else if (line.contains("Password") && line.contains(username)) {
-                    found = true;
-                    stats.append("Player Data: \n");
-                } else if (found) {
-                    stats.append(line + "\n");
-                    count += 1;
-                }
-            }
-
-            if (!found) {
-                System.out.println("Player data not found for username: " + username);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //////////////////////////////////////////////////////////////////////////////
-
-        stats.setVisible(false);
+        updateStats();
+        statsPane.setVisible(false);
 
         setContentPane(panel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(size.width/2, size.height/4);
+        setSize(1100, 600);
 
         selectAGameButton.addActionListener(new ActionListener() {
             @Override
@@ -79,12 +47,11 @@ public class UserAccount extends JFrame {
         viewAccountStatisticsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (stats.isVisible()) {
-                    stats.setVisible(false);
+                if (statsPane.isVisible()) {
+                    statsPane.setVisible(false);
                     viewAccountStatisticsButton.setText("View Account Statistics");
-                }
-                else {
-                    stats.setVisible(true);
+                } else {
+                    statsPane.setVisible(true);
                     viewAccountStatisticsButton.setText("Hide Account Statistics");
                 }
                 greeting.grabFocus();
@@ -94,22 +61,25 @@ public class UserAccount extends JFrame {
         addAFriendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                dispose();
-                UserInterface gui = new UserInterface(username);
+                new UserInterface(user, GameArenaSystem.load().getUsers());
             }
         });
 
     }
 
-//    public static void main(String[] args) {
-//        JFrame frame = new JFrame("UserAccount");
-//        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-//
-//        frame.setContentPane(new UserAccount("testUser").panel);
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.pack();
-//        frame.setSize(size.width/2, size.height/4);
-//        frame.setVisible(true);
-//    }
+    public void updateStats() {
+        // Display current user game stats
+        // Should be called to update the UI after a game finishes
+        HashMap<String, HashMap<String, Integer>> gameStats = user.getStats();
+        stats.setText("Player Data\n\n");
+
+        for (String game : gameStats.keySet()) {
+            stats.append(game + "\n");
+            stats.append("Wins: " + gameStats.get(game).get("Wins") + "\n");
+            stats.append("Losses: " + gameStats.get(game).get("Losses") + "\n");
+            stats.append("Ties: " + gameStats.get(game).get("Ties") + "\n\n");
+        }
+        // Scroll to the top
+        stats.setCaretPosition(0);
+    }
 }

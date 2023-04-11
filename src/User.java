@@ -119,6 +119,7 @@ public class User implements java.io.Serializable {
     {
         this.friendsList.add(user);
     }
+    public void removeFriend(User user) { this.friendsList.remove(user); }
     public ArrayList<User> getFriendsList() { return this.friendsList; }
     public String print()
     {

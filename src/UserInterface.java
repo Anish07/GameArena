@@ -14,7 +14,7 @@ public class UserInterface extends JFrame implements ActionListener {
 
     public UserInterface(User user, ArrayList<User> users) {
         super("Find a friend");
-        this.curuser = curuser;
+        this.curuser = user;
         this.users = users;
 
         JLabel searchLabel = new JLabel("Search:");
@@ -66,7 +66,7 @@ public class UserInterface extends JFrame implements ActionListener {
 
             inviteMenuItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    TournamentGUI lobby = new TournamentGUI(username, searchText);
+                    TournamentGUI lobby = new TournamentGUI(curuser.getUsername(), searchText);
                 }
             });
         }

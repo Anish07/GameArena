@@ -13,7 +13,7 @@ public class OptionsComponent extends JComponent implements ActionListener{
   private JButton btnInfo = new JButton("INFO");
   private static BufferedImage backgroundImage;
 
-  public OptionsComponent(User user) {
+  public OptionsComponent() {
     btnPlay.addActionListener(this);
     btnExit.addActionListener(this);
     btnHelp.addActionListener(this);
@@ -57,9 +57,9 @@ public class OptionsComponent extends JComponent implements ActionListener{
   public void actionPerformed(ActionEvent e) {
     JButton selectedButton = (JButton)e.getSource();
 
+
     if(selectedButton == btnExit) {
       Tester.menuFrame.dispose();
-
     }
     else if(selectedButton == btnPlay) {
       Tester.currentState = Tester.STATE.GAME;

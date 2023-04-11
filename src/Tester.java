@@ -22,18 +22,18 @@ public class Tester {
 
   public static void start(User user) {
     if(currentState == STATE.MENU) {
-      openMenu(user);
+      openMenu();
     }
   }
 
-  public static void openMenu(User user) {
+  public static void openMenu() {
     menuFrame.setTitle("BLACKJACK!");
     menuFrame.setSize(1130, 665);
     menuFrame.setLocationRelativeTo(null);
     menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     menuFrame.setResizable(false);
 
-    OptionsComponent beginningComponent = new OptionsComponent(user);
+    OptionsComponent beginningComponent = new OptionsComponent();
     menuFrame.add(beginningComponent);
     menuFrame.setVisible(true);
   }

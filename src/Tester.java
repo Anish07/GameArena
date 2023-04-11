@@ -20,20 +20,20 @@ public class Tester {
 
   public static STATE currentState = STATE.MENU;
 
-  public static void start() {
+  public static void start(User user) {
     if(currentState == STATE.MENU) {
-      openMenu();
+      openMenu(user);
     }
   }
 
-  public static void openMenu() {
+  public static void openMenu(User user) {
     menuFrame.setTitle("BLACKJACK!");
     menuFrame.setSize(1130, 665);
     menuFrame.setLocationRelativeTo(null);
     menuFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     menuFrame.setResizable(false);
 
-    OptionsComponent beginningComponent = new OptionsComponent();
+    OptionsComponent beginningComponent = new OptionsComponent(user);
     menuFrame.add(beginningComponent);
     menuFrame.setVisible(true);
   }

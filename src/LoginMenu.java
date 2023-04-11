@@ -49,6 +49,7 @@ public class LoginMenu extends JFrame {
                 }
                 else {
                     dispose();
+                    user.setOnline();
                     UserAccount userAccount = new UserAccount(user);
                     userAccount.setVisible(true);
                 }

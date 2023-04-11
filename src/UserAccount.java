@@ -31,7 +31,7 @@ public class UserAccount extends JFrame {
         selectAGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GameForm gameForm = new GameForm();
+                GameForm gameForm = new GameForm(user);
                 gameForm.setVisible(true);
             }
         });
@@ -40,6 +40,7 @@ public class UserAccount extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                user.setOffline();
                 LoginMenu m = new LoginMenu();
                 m.setVisible(true);
             }

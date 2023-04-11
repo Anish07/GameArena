@@ -87,9 +87,9 @@ public class User implements java.io.Serializable {
             gameStats.put(stat, gameStats.get(stat) + 1);
     }
 
-    public void playGame() //skeleton placeholder to use for other things
+    public void playGame(String game) //skeleton placeholder to use for other things
     {
-        setStatus("playing a game");
+        setStatus("playing " + game);
     }
     public void ExitGame()
     {

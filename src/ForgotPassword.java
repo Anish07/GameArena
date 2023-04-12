@@ -45,6 +45,8 @@ public class ForgotPassword extends JFrame {
 
                 else {
                     system.getUser(username).setPassword(password);
+
+                    system.updatePassword(username,email,password);
                     system.save();
 
                     JOptionPane.showMessageDialog(null, "Password successfully updated.", "Password Updated", JOptionPane.INFORMATION_MESSAGE);

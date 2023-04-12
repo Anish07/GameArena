@@ -17,7 +17,9 @@ public class CreateAccount extends JFrame {
     private JLabel icon;
     private JPasswordField confirmPasswordTextField;
     private JTextField nameTextField;
-
+    public void addUserToDb() {
+        System.out.println("HEre");
+    }
     public CreateAccount() {
         ImageIcon iconImg = new ImageIcon("images/controller_small.png");
         icon.setIcon(iconImg);
@@ -27,6 +29,9 @@ public class CreateAccount extends JFrame {
         pack();
         setSize(1100, 700);
         setVisible(true);
+
+
+
 
         cancelButton.addActionListener(new ActionListener() {
             @Override

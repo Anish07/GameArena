@@ -84,7 +84,10 @@ public class UserInterface extends JFrame implements ActionListener {
                 public void actionPerformed(ActionEvent e) {
                     if(resultsArea.getText() != null){
                         if(!(curuser.getFriendsList().contains(system.getUser(searchText)))){
-                            curuser.addFriend(system.getUser(searchText));
+                      //      curuser.addFriend(system.getUser(searchText));
+
+                            system.addFriend(curuser.getId(),system.getUser(searchText).getId());
+                            // Add friends here
                             JOptionPane.showMessageDialog(null, searchText + " has been added to your friends list!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null,  searchText + " is already in your friends list.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -1,7 +1,12 @@
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User implements java.io.Serializable {
+
+    private enum Status { IDLE,PLAYING}
+
+    private int id;
     private String name;
     private String email;
     private int secondsPlayed;
@@ -24,6 +29,53 @@ public class User implements java.io.Serializable {
         this.friendsList = new ArrayList<User>();
     }
 
+    public void addToDB() {
+
+            Connection connection = null;
+            try
+            {
+                System.out.println(this.name);
+                // create a database connection
+                connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+                String sql = "INSERT INTO users (username, password,email,name) VALUES (?, ?,?,?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, this.username);
+                statement.setString(2, this.password);
+                statement.setString(3, this.email);
+                statement.setString(4, this.name);
+                statement.executeUpdate();
+
+
+
+
+
+
+
+            }
+            catch(SQLException e)
+            {
+                // if the error message is "out of memory",
+                // it probably means no database file is found
+                System.err.println(e.getMessage());
+            }
+            finally
+            {
+                try
+                {
+                    if(connection != null)
+                        connection.close();
+                }
+                catch(SQLException e)
+                {
+                    // connection close failed.
+                    System.err.println(e.getMessage());
+                }
+            }
+
+
+        }
+
+
     public User(String username, String email, String name) {
         this(username, email, name, null);
     }
@@ -36,6 +88,17 @@ public class User implements java.io.Serializable {
     public String getName()
     {
         return name;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+
+    public void setId(int ID)
+    {
+        this.id=ID;
     }
 
     public String getUsername() { return username; }
@@ -119,7 +182,6 @@ public class User implements java.io.Serializable {
     {
         this.friendsList.add(user);
     }
-    public void removeFriend(User user) { this.friendsList.remove(user); }
     public ArrayList<User> getFriendsList() { return this.friendsList; }
     public String print()
     {

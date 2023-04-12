@@ -16,7 +16,7 @@ public class FriendsList extends JFrame {
         removeAFriendbtn.setText("Remove a friend");
         friendsField.setText("\n\n");
         GameArenaSystem system = GameArenaSystem.load();
-        for (User u: curuser.getFriendsList())
+        for (User u: system.getFriendsForUser(user.getId()))
             friendsField.append("Username: " + u.getUsername() + "\tStatus: " + u.getStatus() + "\n");
 
         removeAFriendbtn.addActionListener(new ActionListener() {
@@ -31,10 +31,13 @@ public class FriendsList extends JFrame {
                 int result = JOptionPane.showOptionDialog(null, panel, "Remove Friend", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (result == JOptionPane.OK_OPTION) {
                     String friend = textField.getText();
-                    if(curuser.getFriendsList().contains(system.getUser(friend))) {
-                        curuser.removeFriend(system.getUser(friend));
+                    if(system.getFriendsForUser(user.getId()).stream().anyMatch(usr -> usr.getId() == system.getUser(friend).getId())) {
+
+                        System.out.println(system.getUser(friend).getId());
+
+                        system.removeFriendById(system.getUser(friend).getId());
                         JOptionPane.showMessageDialog(null, "Friend '" + friend + "' deleted.");
-                        for (User u: curuser.getFriendsList())
+                        for (User u: system.getFriendsForUser(user.getId()))
                             friendsField.append("Username: " + u.getUsername() + "\tStatus: " + u.getStatus() + "\n");
                     } else {
                         System.out.println(curuser.print());

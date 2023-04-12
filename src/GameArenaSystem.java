@@ -607,6 +607,7 @@ public class GameArenaSystem implements java.io.Serializable {
     }
 
     public void registerDemoUsers() {
+        /*
         registerUser(new User("BobLovesGames","bob.dole@games.com", "Bob Dole", "blah"));
         registerUser(new User("BellDoesntLikeGamesAtAll","bell.pepper@nogames.com", "Bell Pepper", "BELL"));
         registerUser(new User("jesseCool","jesse.chambers@gmail.com", "Jesse Chambers", "joejoe"));
@@ -614,5 +615,8 @@ public class GameArenaSystem implements java.io.Serializable {
         registerUser(new User("Luke123","luke.sky@starwars.com", "Luke Skywalker", "lukey123"));
         registerUser(new User("fungi123","fungus.mushroom@gamer.com", "Fungi Mushroom", "fungi123"));
         registerUser(new User("dark123","dark.vader@starwars.com", "Dark Vader", "blah123"));
+
+
+         */
     }
 }

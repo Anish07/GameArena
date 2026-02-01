@@ -1,2 +1,2 @@
 # GameArena
-Built using Java Swing UI. 
+Built using Java Swing UI for CPS 406. 
